@@ -1,0 +1,3 @@
+open up 2 terminals, one in the rChat directory, one in the client directory
+do "npm init" on each to install all the node dependencies
+npm start on each to run the server and client side code

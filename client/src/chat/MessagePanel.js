@@ -21,6 +21,7 @@ export class MessagePanel extends React.Component {
             list = this.props.channel.messages.map(m => <Message key={m.id} id={m.id} author={m.author} content={m.content} />);
         }
     }
+    
     return() {
         <div className="message-panel">
             <div className="messages">{list}</div>

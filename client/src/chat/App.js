@@ -1,5 +1,6 @@
 import React from 'react';
 import './app.scss';
+import { ChannelList } from './ChannelList';
 const SERVER = "http://192.168.1.67:3001";
 const socket = require("socket.io-client")(SERVER, { transports: ["websocket"] });
 
@@ -61,9 +62,7 @@ export class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          
-          <input type="text" id="message_input" onChange={this.handleInput} value={this.state.current_input} />
-          <button onClick={this.send}>Send</button>
+
         </header>
       </div>
     );
