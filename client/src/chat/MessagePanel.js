@@ -6,7 +6,6 @@ const SERVER = "http://192.168.1.67:3001";
 export class MessagePanel extends React.Component {
     state = { current_input: '' };
     send = () => {
-        console.log(this.current_input);
         if (this.state.current_input && this.state.current_input !== '') {
             this.props.onSendMessage(this.props.channel.id, this.state.current_input);
             this.setState({ current_input: '' });

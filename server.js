@@ -54,8 +54,8 @@ io.on('connection', (socket) => {
         return id;
     });
 
-    socket.on('send-message', content => {
-        io.emit('messages', message);
+    socket.on('send-message', message => {
+        io.emit('message', message);
     });
 
     socket.on('disconnect', () => {

@@ -12,14 +12,11 @@
     }
 
     .channel-list {
-        width: calc(20% - 12px);
         border: 1px solid rgb(224, 224, 224);
-        margin: 10px;
-        margin-right: calc(20% - 12px);
-        border-right: none;
-        height: calc(100% - 22px);
+        height: 100%;
+        width: calc(20% - 12px);
         display: inline-block;
-        background: green;
+        background: blue;
     }
 
     .channel-item {
@@ -41,16 +38,11 @@
     }
 
     .message-panel {
-        width: calc(80% - 12px);
         border: 1px solid rgb(224, 224, 224);
-        margin: 10px;
-        margin-left: calc(80% - 12px);
-        height: calc(100% - 22px);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        background: blue;
+        height: 100%;
+        width: calc(80% - 12px);
+        display: inline-block;
+        background: green;
 
         .messages {
             align-self: stretch;

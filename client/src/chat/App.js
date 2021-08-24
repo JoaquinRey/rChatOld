@@ -1,5 +1,5 @@
 import React from 'react';
-import './app.scss';
+import './test.scss';
 import { ChannelList } from './ChannelList';
 import { MessagePanel } from './MessagePanel';
 const SERVER = "http://192.168.1.67:3001";
@@ -12,7 +12,8 @@ export class App extends React.Component {
     channels: null,
     socket: null,
     channel: null,
-    user_id: null
+    user_id: null,
+    username: null
   }
 
   //socket;
@@ -32,6 +33,30 @@ export class App extends React.Component {
       console.log(`connect_error due to ${err.message}`);
     })
 
+    socket.on('channel', channel => {
+      let channels = this.state.channels;
+      channels.forEach(c => {
+        if (c.id === channel.id) {
+          c.participants = channel.participants;
+        }
+      });
+      this.setState({ channels });
+    })
+
+    socket.on('message', message => {
+      let channels = this.state.channels;
+      channels.forEach(c => {
+        if (c.id === message.channel_id) {
+          if (!c.messages) {
+            c.messages = [message];
+          } else {
+            c.messages.push(message);
+          }
+        }
+      });
+      this.setState({ channels });
+    });
+
     this.socket = socket;
   }
 
@@ -50,6 +75,15 @@ export class App extends React.Component {
 
   handleSendMessage = (channel_id, content) => {
     this.socket.emit('send-message', {channel_id, content, author: this.socket.id, id: Date.now()});
+  }
+
+  handleChannelSelect = id => {
+    let channel = this.state.channels.find(c => {
+      return c.id === id;
+    });
+    this.setState({ channel });
+    this.socket.emit('channel-join', id, ack => {
+    });
   }
 
   render() {
