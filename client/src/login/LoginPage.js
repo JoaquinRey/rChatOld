@@ -1,5 +1,5 @@
 import React from 'react';
-import './loginPage.scss';
+import './loginPage.css';
 
 export class LoginPage extends React.Component {
     state = {
@@ -10,7 +10,8 @@ export class LoginPage extends React.Component {
     render() {
         return(
             <div className="login-page">
-
+                <input type="text" id="username" name="username"></input>
+                <input type="text" id="password" name="password"></input>
             </div>
         )
     }

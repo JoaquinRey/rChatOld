@@ -3,6 +3,7 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
+const cors = require('cors');
 const io = new Server(server);
 
 const PORT = 3001;
@@ -19,10 +20,15 @@ var STATIC_CHANNELS = [{
     sockets: []
 }];
 
+app.use(cors());
+
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*:*');
+    res.setHeader('Access-Control-Allow-Origin', 'http://192.168.1.67:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
-})
+});
+
 
 io.on('connection', (socket) => {
     console.log("user connected");
@@ -52,10 +58,6 @@ io.on('connection', (socket) => {
         io.emit('messages', message);
     });
 
-    socket.on("cum", num => {
-        console.log(num);
-    })
-
     socket.on('disconnect', () => {
         console.log("user disconnected");
         STATIC_CHANNELS.forEach(c => {
@@ -74,7 +76,7 @@ app.get('/getChannels', (req, res) => {
     res.json({
         channels: STATIC_CHANNELS
     })
-})
+});
 
 server.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);

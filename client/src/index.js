@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { App } from './chat/App';
+import { LoginPage } from './login/LoginPage';
+
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
