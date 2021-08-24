@@ -1,5 +1,5 @@
 import React from 'react';
-import './test.scss';
+import './app.scss';
 import { ChannelList } from './ChannelList';
 import { MessagePanel } from './MessagePanel';
 const SERVER = "http://192.168.1.67:3001";
@@ -15,8 +15,6 @@ export class App extends React.Component {
     user_id: null,
     username: null
   }
-
-  //socket;
 
   componentDidMount() {
     this.loadChannels();

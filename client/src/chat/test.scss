@@ -1,6 +1,6 @@
 .App {
-    width: 100%;
-    height: 100%;
+    width: 1280px;
+    height: 720px;
     display: flex;
 
     .no-contents {
@@ -14,8 +14,9 @@
     .channel-list {
         border: 1px solid rgb(224, 224, 224);
         height: 100%;
-        width: calc(20% - 12px);
+        width: calc(1280px * 20%);
         display: inline-block;
+        overflow: auto;
         background: blue;
     }
 
@@ -40,13 +41,14 @@
     .message-panel {
         border: 1px solid rgb(224, 224, 224);
         height: 100%;
-        width: calc(80% - 12px);
+        width: calc(1280px * 80%);
         display: inline-block;
         background: green;
 
         .messages {
             align-self: stretch;
             height: 100%;
+            overflow: auto;
         }
 
         .message-input {

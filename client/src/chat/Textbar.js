@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Message } from './Message';
 
 const SERVER = "http://192.168.1.67:3001";
