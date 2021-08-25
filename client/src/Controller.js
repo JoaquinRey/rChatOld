@@ -28,28 +28,3 @@ export default function Controller() {
         </Router>
     );
 }
-/*
-function Login() {
-    return (
-        <div>
-            <LoginPage />
-        </div>    
-    );
-}
-
-function App() {
-    return (
-        <div>
-            <App />
-        </div>
-    );
-}
-
-function Signup() {
-    return (
-        <div>
-            <Signup />
-        </div>
-    );
-}
-*/
