@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { App } from './chat/App';
-import { LoginPage } from './login/LoginPage';
 import Controller from './Controller';
 
 import reportWebVitals from './reportWebVitals';

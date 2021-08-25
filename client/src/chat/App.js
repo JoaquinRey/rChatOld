@@ -13,8 +13,8 @@ export class App extends React.Component {
     socket: null,
     channel: null,
     user_id: null,
-    username: null
   }
+
 
   componentDidMount() {
     this.loadChannels();
@@ -64,10 +64,10 @@ export class App extends React.Component {
 
   loadChannels = async () => {
     fetch(SERVER + '/getChannels').then(async responce => {
+      this.setState({username: this.props.dataFromParent.user});
       let data = await responce.json();
       this.setState({channels: data.channels});
       console.log("fetch");
-      console.log(data);
     })
   }
 
@@ -76,7 +76,7 @@ export class App extends React.Component {
   }
 
   handleSendMessage = (channel_id, content) => {
-    this.socket.emit('send-message', {channel_id, content, author: this.socket.id, id: Date.now()});
+    this.socket.emit('send-message', {channel_id, content, author: this.state.username, id: Date.now()});
   }
 
   handleChannelSelect = id => {
@@ -89,7 +89,7 @@ export class App extends React.Component {
   }
 
   render() {
-   
+
     return (
       <div className="App">
         <header className="App-header">
@@ -101,4 +101,3 @@ export class App extends React.Component {
     
   }
 }
-
