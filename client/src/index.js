@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { App } from './chat/App';
 import { LoginPage } from './login/LoginPage';
+import Controller from './Controller';
 
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Controller />
   </React.StrictMode>,
   document.getElementById('root')
 );
