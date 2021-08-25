@@ -62,8 +62,6 @@
             position: fixed;
             bottom: 0;
             
-            
-
             input {
                 margin: auto;
                 height: 20px;
@@ -93,6 +91,12 @@
                     background-color: #66a6ff;
                 }
             }
+        }
+    }
+    .message-instance {
+        padding: 10px;
+        &:hover {
+            background: #1d1d1d;
         }
     }
 }

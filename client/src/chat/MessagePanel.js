@@ -8,7 +8,6 @@ const messageEndRef = React.createRef();
 export class MessagePanel extends React.Component {
     state = { current_input: '' };
 
-    
     send = () => {
         if (this.state.current_input && this.state.current_input !== '') {
             this.props.onSendMessage(this.props.channel.id, this.state.current_input);
