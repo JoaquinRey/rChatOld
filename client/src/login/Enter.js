@@ -22,14 +22,6 @@ export default function Enter({ setToken }) {
 
     let history = useHistory();
 
-
-    function handleClick() {
-        history.push( {
-            pathname: '/app', 
-            state: {channels: null, sockets: null, channel: null, user_id: null, username: "rBad"}
-        });
-    }
-
     const handleSubmit = async e => {
         e.preventDefault();
         if (password !== "bingus") {
@@ -54,7 +46,6 @@ export default function Enter({ setToken }) {
         </div>
         
     );
-
 }
 
 Enter.propTypes = {

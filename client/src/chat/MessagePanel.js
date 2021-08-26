@@ -35,6 +35,13 @@ export class MessagePanel extends React.Component {
     }
 
     render() {
+
+        document.addEventListener("keydown", (e) => {
+            if (e.code === "Enter") {
+                this.send()
+            }
+        });
+
         let list = <div className="no-contents">There are no messages to show</div>;
         if (this.props.channel && this.props.channel.messages) {
             list = this.props.channel.messages.map(m => <Message key={m.id} id={m.id} author={m.author} content={m.content} />);

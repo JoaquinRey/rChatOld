@@ -20,9 +20,6 @@ export class App extends React.Component {
     this.loadChannels();
     this.configureSocket();
 
-    document.addEventListener("keydown", (e) => {
-      e.code === "Enter" && console.log("Enter has been pressed")
-    });
   }
 
   configureSocket = () => {

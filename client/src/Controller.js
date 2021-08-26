@@ -5,7 +5,6 @@ import {
     Route
 } from "react-router-dom";
 import { App } from './chat/App';
-import { LoginPage } from './login/LoginPage';
 import { Signup } from './login/Signup';
 import Enter from './login/Enter';
 
