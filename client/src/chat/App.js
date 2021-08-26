@@ -73,7 +73,7 @@ export class App extends React.Component {
   }
 
   handleSendMessage = (channel_id, content) => {
-    this.socket.emit('send-message', {channel_id, content, author: this.state.username, id: Date.now()});
+    this.socket.emit('send-message', {channel_id, content, author: this.state.username, id: Date.now()}, this.state.channel_id);
   }
 
   handleChannelSelect = id => {

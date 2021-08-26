@@ -5,6 +5,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const cors = require('cors');
 const io = new Server(server);
+const fs = require('fs');
 
 const PORT = 3001;
 
@@ -54,7 +55,13 @@ io.on('connection', (socket) => {
         return id;
     });
 
-    socket.on('send-message', message => {
+    socket.on('send-message', message, channel_id => {
+        let data = '';
+        fs.writeFile('database/' + channel_id, data, (err) => {
+            if (err) throw err;
+            console.log("Data written to file");
+        });
+
         io.emit('message', message);
     });
 
