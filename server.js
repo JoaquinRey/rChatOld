@@ -9,6 +9,8 @@ const fs = require('fs');
 
 const PORT = 3001;
 
+const MSG_AMOUNT_CONST = 20;
+
 var STATIC_CHANNELS = [{
     name: 'Global chat',
     participants: 0,
@@ -55,15 +57,51 @@ io.on('connection', (socket) => {
         return id;
     });
 
-    socket.on('send-message', message, channel_id => {
-        let data = '';
-        fs.writeFile('database/' + channel_id, data, (err) => {
-            if (err) throw err;
-            console.log("Data written to file");
+    socket.on('send-message', message => {
+        let path = 'database/' + message.channel_id + '.json';
+        if (!fs.existsSync(path)) {
+            console.log("does not exist");
+            return;
+        }
+
+        fs.readFile(path, 'utf-8', (err, data) => {
+            if (err) {
+                console.log("Failed to read file");
+                return
+            }
+
+            data = JSON.parse(data);
+            data['messages'].push(message);
+            data = JSON.stringify(data);
+
+            fs.writeFileSync(path, data, (err) => {
+                if (err) throw err;
+            });
         });
 
         io.emit('message', message);
     });
+
+    socket.on('notify-get-messages', channel_id => {
+        let path = 'database/' + channel_id + '.json';
+        console.log(channel_id)
+        if (!fs.existsSync(path)) {
+            console.log("does not exist");
+            return;
+        }
+
+        fs.readFile(path, 'utf-8', (err, data) => {
+            data = JSON.parse(data);
+            num = data['messages'].length
+            if (num < 10) {
+                data = data['messages'];
+            } else {
+                data = data['messages'].slice(num - 11, num - 1);
+            }
+            console.log("pggers")
+            socket.emit('server-messages', data);
+        })
+    })
 
     socket.on('disconnect', () => {
         console.log("user disconnected");

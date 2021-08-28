@@ -22,11 +22,13 @@ export default function Enter({ setToken }) {
 
     let history = useHistory();
 
+
     const handleSubmit = async e => {
         e.preventDefault();
         if (password !== "bingus") {
             return;
         }
+
         const token = await loginUser({
             username,
             password
