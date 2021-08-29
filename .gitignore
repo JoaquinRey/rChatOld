@@ -1,5 +1,7 @@
 /node_modules
 /client/node_modules
 /electron-client/node_modules
+/database
+
 test.html
 index.html

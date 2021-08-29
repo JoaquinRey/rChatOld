@@ -13,6 +13,7 @@ export class App extends React.Component {
     socket: null,
     channel: null,
     user_id: null,
+    scope: [0, 9],
   }
 
 
@@ -58,8 +59,6 @@ export class App extends React.Component {
     });
 
     socket.on('server-messages', data => {
-      console.log(data)
-      let current_channel = this.state.channel;
       this.state.channel.messages = data;
     })
 
@@ -87,11 +86,17 @@ export class App extends React.Component {
     this.socket.emit('send-message', {channel_id, content, author: this.state.username, id: Date.now()});
   }
 
+  notifyGetMessages = id => {
+    console.log("poggies")
+    this.socket.emit('notify-get-messages', id);
+  }
+
   handleChannelSelect = id => {
     let channel = this.state.channels.find(c => {
       return c.id === id;
     });
-    this.socket.emit('notify-get-messages', id);
+    console.log(this.state.scope)
+    this.notifyGetMessages(id);
     this.setState({ channel });
     this.socket.emit('channel-join', id, ack => {
     });
@@ -103,7 +108,7 @@ export class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <ChannelList channels={this.state.channels} onSelectChannel={this.handleChannelSelect} />
-          <MessagePanel onSendMessage={this.handleSendMessage} channel={this.state.channel} />
+          <MessagePanel onSendMessage={this.handleSendMessage} channel={this.state.channel} loadMoreMessages={this.notifyGetMessages}/>
         </header>
       </div>
     );

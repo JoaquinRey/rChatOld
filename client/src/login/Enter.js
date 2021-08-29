@@ -43,7 +43,7 @@ export default function Enter({ setToken }) {
             <form className="fields">
                 <input type="text" id="username" placeholder="username" name="username" required="required" onChange={e => setUserName(e.target.value)}></input>
                 <input type="password" id="password" placeholder="password" name="password" required="required" onChange={e => setPassword(e.target.value)}></input>
-                <button type="submit" className="submit-login" onClick={handleSubmit}>Let me in.</button> 
+                <button type="submit" className="submit-login" onClick={handleSubmit}>Enter</button> 
             </form>
         </div>
         

@@ -27,11 +27,12 @@ export class MessagePanel extends React.Component {
         this.setState({ current_input: e.target.value });
     } 
     
-    loadMessages = async (channel_id) => {
-        fetch(SERVER + '/' + channel_id).then(async responce => {
-            let messages = await responce.json();
-            this.setState({});
-        })
+    loadMessages = () => {
+        this.props.loadMoreMessages();
+    }
+
+    sendFile = () => {
+
     }
 
     render() {
@@ -43,16 +44,29 @@ export class MessagePanel extends React.Component {
         });
 
         let list = <div className="no-contents">There are no messages to show</div>;
+        let load_messages = <div></div>
         if (this.props.channel && this.props.channel.messages) {
+            load_messages = <button onClick={this.loadMessages}>Load More Messages</button>
             list = this.props.channel.messages.map(m => <Message key={m.id} id={m.id} author={m.author} content={m.content} />);
         }
 
         return(
             <div className="message-panel">
-                <div className="messages">{list}</div>
+        
+                <div className="messages">
+                    <div className="load-messages">
+                        {load_messages}
+                    </div>
+                    <div>
+                        {list}
+                    </div>
+                </div>
                 {this.props.channel && 
                     <div className="message-input">
                         <input type="text" onChange={this.handleInput} value={this.state.current_input} />
+                        <form onSubmit={this.sendFile} className="file-submit">
+                            <input type="file"></input>
+                        </form>
                         <button onClick={this.send}>Send</button>
                     </div>
                 }

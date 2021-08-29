@@ -12,17 +12,16 @@
     }
 
     .channel-list {
-        border: 1px solid rgb(224, 224, 224);
         height: 100%;
         width: calc(20% - 12px);
         display: inline-block;
         overflow: auto;
-        background: blue;
+        background: #363636;
         
     }
 
     .channel-item {
-        border-bottom: 1px solid rgb(224, 224, 224);
+        border-bottom: 1px solid #444444;
         padding: 10px;
 
         div {
@@ -40,11 +39,10 @@
     }
 
     .message-panel {
-        border: 1px solid rgb(224, 224, 224);
         height: 100%;
         width: calc(80% - 12px);
         display: inline-block;
-        background: green;
+        background:#464646;
         position: fixed;
         bottom: 30px;
         top: 0px;
@@ -53,15 +51,34 @@
             align-self: stretch;
             height: 100%;
             overflow: auto;
+            color: rgb(210, 210, 210);
+
+            .load-messages {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 5%;
+
+                button {
+                    width: 60%;
+                    background-color: #363636;
+                    color: white;
+                }
+
+            }
         }
 
         .message-input {
             width: calc(80% - 12px);
-            border-top: 1px solid rgb(224, 224, 224);
-            background-color: #f0f0f0;
             display: flex;
             position: fixed;
             bottom: 0;
+
+            .file-submit {
+                width: 20px;
+                height: 20px;
+
+            }
             
             input {
                 margin: auto;
@@ -96,8 +113,20 @@
     }
     .message-instance {
         padding: 10px;
+
+        .reply {
+            display: none;
+        }
+
         &:hover {
-            background: #1d1d1d;
+            background: #565656;
+
+            .reply {
+                display: inline-block;
+                position: fixed;
+                right: 10%;
+                top: 6%;
+            }
         }
     }
 }

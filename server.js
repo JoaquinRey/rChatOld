@@ -17,7 +17,7 @@ var STATIC_CHANNELS = [{
     id: 1,
     sockets: []
 }, {
-    name: 'Dev',
+    name: 'OHS-General',
     participants: 0,
     id: 2,
     sockets: []
@@ -59,9 +59,11 @@ io.on('connection', (socket) => {
 
     socket.on('send-message', message => {
         let path = 'database/' + message.channel_id + '.json';
+        let default_content = '{"messages": []}';
         if (!fs.existsSync(path)) {
-            console.log("does not exist");
-            return;
+            fs.appendFile(path, default_content, function (err, file) {
+                if (err) throw err;
+            })
         }
 
         fs.readFile(path, 'utf-8', (err, data) => {
@@ -84,10 +86,12 @@ io.on('connection', (socket) => {
 
     socket.on('notify-get-messages', channel_id => {
         let path = 'database/' + channel_id + '.json';
+        let default_content = '{"messages": []}';
         console.log(channel_id)
         if (!fs.existsSync(path)) {
-            console.log("does not exist");
-            return;
+            fs.appendFile(path, default_content, function (err, file) {
+                if (err) throw err;
+            })
         }
 
         fs.readFile(path, 'utf-8', (err, data) => {
@@ -98,7 +102,6 @@ io.on('connection', (socket) => {
             } else {
                 data = data['messages'].slice(num - 11, num - 1);
             }
-            console.log("pggers")
             socket.emit('server-messages', data);
         })
     })
